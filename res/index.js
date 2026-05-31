@@ -1327,6 +1327,10 @@ const call = async (request, response) => {
         return;
     }
 
+    if (request["headers"]["origin"] != undefined && /^https\:\/\/[a-z]{3}\.metsoalle\.com$/.test(request["headers"]["origin"]) == true) {
+        response.setHeader("Access-Control-Allow-Origin", request["headers"]["origin"]);
+    }
+
     if (endpoint == undefined) {
         response.writeHead(404, { "Content-Type": "application/json" });
 
@@ -1335,10 +1339,6 @@ const call = async (request, response) => {
         response.end();
 
         return;
-    }
-
-    if (request["headers"]["origin"] != undefined && /^https\:\/\/[a-z]{3}\.metsoalle\.com$/.test(request["headers"]["origin"]) == true) {
-        response.setHeader("Access-Control-Allow-Origin", request["headers"]["origin"]);
     }
 
     response.writeHead(200, { "Content-Type": endpoint["mime"] });

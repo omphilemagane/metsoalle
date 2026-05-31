@@ -81,6 +81,26 @@ const call = async (request, response) => {
         }
     }
 
+    if (request["headers"]["origin"] != undefined && /^https\:\/\/[a-z]{3}\.metsoalle\.com$/.test(request["headers"]["origin"]) == true) {
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+
+        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, OPTIONS, DELETE");
+
+        response.setHeader("Access-Control-Allow-Origin", request["headers"]["origin"]);
+
+        response.setHeader("Access-Control-Expose-Headers", "Authorization, Content-Type");
+    }
+
+    if (request["method"] == "OPTIONS") {
+        response.writeHead(204);
+
+        response.end();
+
+        return;
+    }
+
     if (endpoint == undefined) {
         response.writeHead(404, { "Content-Type": "application/json" });
 
