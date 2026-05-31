@@ -1,5 +1,7 @@
 "use strict";
 
+const account = {};
+
 const queue = {
     "alerts": [],
     "loader": []
@@ -155,11 +157,48 @@ const init = async () => {
 };
 
 const sessionInit = async () => {
-    /* code here */
+    if (localStorage.getItem("authorization") == null) {
+        location["href"] = "/accounts/access";
+    }
+
+    if (localStorage.getItem("authorization") != null) {
+        try {
+            const response = await fetch("https://api.metsoalle.com/accounts/select", {
+                "credentials": "include",
+                "method": "GET",
+                "headers": {
+                    "Authorization": localStorage.getItem("authorization")
+                }
+            });
+
+            const json = await response.json();
+
+            switch (response["status"]) {
+                case 200:
+                    Object.assign(account, json["record"]);
+
+                    break;
+                default:
+                    openAlerts("Oh No!", "[" + response["status"] + "] It seems as if that the application has encountered an unexpected error!", "Sign Out", () => {
+                        localStorage.clear(); location.reload();
+                    });
+
+                    break;
+            }
+        } catch (error) {
+            openLoader("Oh No!", "It seems as if that the application has encountered an unexpected error!", "Reload", () => {
+                location.reload();
+            });
+        }
+    }
 };
 
 const headerInit = async () => {
     const button = document.querySelectorAll('div[class="header-content-input-button"]');
+
+    if (account["profile-picture"] != undefined && account["profile-picture"] != "") {
+        document.querySelector('img[class="header-content-input-button-image"]')["style"]["content"] = 'url(" + account["profile-picture"] + ")';
+    }
 
     buttonify(button[0], (event) => {
         history.back();

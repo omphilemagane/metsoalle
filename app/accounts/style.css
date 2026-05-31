@@ -294,7 +294,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
-        visibility: inherit;
+        visibility: hidden;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -560,7 +560,7 @@
 
     div[class="footer-content-input"] {
         background-color: rgba(0, 0, 0, 0);
-        width: 20%;
+        width: calc(100% / 3);
         height: 44px;
         display: inline-block;
         vertical-align: middle;
@@ -950,7 +950,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
-        visibility: inherit;
+        visibility: hidden;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -1216,7 +1216,7 @@
 
     div[class="footer-content-input"] {
         background-color: rgba(0, 0, 0, 0);
-        width: 20%;
+        width: calc(100% / 3);
         height: 44px;
         display: inline-block;
         vertical-align: middle;
@@ -1606,7 +1606,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
-        visibility: inherit;
+        visibility: hidden;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -1872,7 +1872,7 @@
 
     div[class="footer-content-input"] {
         background-color: rgba(0, 0, 0, 0);
-        width: 20%;
+        width: calc(100% / 3);
         height: 44px;
         display: inline-block;
         vertical-align: middle;

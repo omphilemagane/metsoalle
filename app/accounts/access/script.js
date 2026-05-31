@@ -1,7 +1,5 @@
 "use strict";
 
-const account = {};
-
 const queue = {
     "alerts": [],
     "loader": []
@@ -157,10 +155,6 @@ const init = async () => {
 };
 
 const sessionInit = async () => {
-    if (localStorage.getItem("authorization") == null) {
-        location["href"] = "/accounts/access";
-    }
-
     if (localStorage.getItem("authorization") != null) {
         try {
             const response = await fetch("https://api.metsoalle.com/accounts/select", {
@@ -175,7 +169,7 @@ const sessionInit = async () => {
 
             switch (response["status"]) {
                 case 200:
-                    Object.assign(account, json["record"]);
+                    location["href"] = "/home";
 
                     break;
                 default:
@@ -196,20 +190,16 @@ const sessionInit = async () => {
 const headerInit = async () => {
     const button = document.querySelectorAll('div[class="header-content-input-button"]');
 
-    if (account["profile-picture"] != undefined && account["profile-picture"] != "") {
-        document.querySelector('img[class="header-content-input-button-image"]')["style"]["content"] = 'url(" + account["profile-picture"] + ")';
-    }
-
     buttonify(button[0], (event) => {
         history.back();
     });
 
     buttonify(button[1], (event) => {
-        location["href"] = "/home";
+        location["href"] = "/accounts/access";
     });
 
     buttonify(button[2], (event) => {
-        location["href"] = "/profile";
+        /* left blank */
     });
 };
 
@@ -233,48 +223,28 @@ const footerInit = async () => {
     const button = document.querySelectorAll('div[class="footer-content-input-button"]');
 
     buttonify(button[0], (event) => {
-        location["href"] = "/home";
+        location["href"] = "/accounts/create";
     });
 
     buttonify(button[1], (event) => {
-        location["href"] = "/search";
+        location["href"] = "/accounts/access";
     });
 
     buttonify(button[2], (event) => {
-        location["href"] = "/upload";
+        location["href"] = "/accounts/forgot";
     });
 
-    buttonify(button[3], (event) => {
-        location["href"] = "/inbox";
-    });
-
-    buttonify(button[4], (event) => {
-        location["href"] = "/settings";
-    });
-
-    switch (location["pathname"].split("/")[1]) {
-        case "home":
+    switch (location["pathname"].split("/")[2]) {
+        case "create":
             button[0].setAttribute("data-state", "active");
 
             break;
-        case "search":
+        case "access":
             button[1].setAttribute("data-state", "active");
 
             break;
-        case "upload":
+        case "forgot":
             button[2].setAttribute("data-state", "active");
-
-            break;
-        case "inbox":
-            button[3].setAttribute("data-state", "active");
-
-            break;
-        case "settings":
-            button[4].setAttribute("data-state", "active");
-
-            break;
-        case "profile":
-            button[4].setAttribute("data-state", "active");
 
             break;
     }

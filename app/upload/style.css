@@ -182,6 +182,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -237,6 +238,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: calc(100% - 120px);
         height: auto;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px 12px 0px 16px;
@@ -292,6 +294,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -835,6 +838,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -890,6 +894,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: calc(100% - 120px);
         height: auto;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px 12px 0px 16px;
@@ -945,6 +950,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -1488,6 +1494,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
@@ -1543,6 +1550,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: calc(100% - 120px);
         height: auto;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px 12px 0px 16px;
@@ -1598,6 +1606,7 @@
         background-color: rgba(0, 0, 0, 0);
         width: 44px;
         height: 44px;
+        visibility: inherit;
         display: inline-block;
         vertical-align: middle;
         margin: 0px -4px 0px 0px;
