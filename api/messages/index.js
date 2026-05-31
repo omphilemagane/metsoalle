@@ -52,7 +52,7 @@ module.exports = async (request, response) => {
     try {
         session = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account + "/sessions/" + session + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -77,14 +77,14 @@ module.exports = async (request, response) => {
 
     account = await new Promise((resolve, reject) => {
         fs.readFile("/home/" + account + "/index.json", (error, content) => {
-            return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+            return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
         });
     });
 
     try {
         await new Promise((resolve, reject) => {
             fs.access("/home/" + account["account-id"] + "/chats/" + request["url"]["searchParams"].get("chat-id") + "/index.json", fs.constants.F_OK, (error) => {
-                return error = null ? resolve() : reject(new Error(error["message"]));
+                return error == null ? resolve() : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -99,14 +99,14 @@ module.exports = async (request, response) => {
 
     record = await new Promise((resolve, reject) => {
         fs.readdir("/home/" + account["account-id"] + "/chats/" + request["url"]["searchParams"].get("chat-id") + "/messages/", (error, content) => {
-            return error = null ? resolve(content) : reject(new Error(error["message"]));
+            return error == null ? resolve(content) : reject(new Error(error["message"]));
         });
     });
 
     record = await Promise.all(record.map((element, index) => {
         return new Promise((resolve, reject) => {
             fs.readFile("/home/" + account["account-id"] + "/chats/" + request["url"]["searchParams"].get("chat-id") + "/messages/" + element + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     }));

@@ -7,7 +7,7 @@ const fs = require("fs");
 module.exports = async (request, response) => {
     let account, session, sessiex, theuser, record;
 
-    if (request["method"] == "POST") {
+    if (request["method"] != "POST") {
         response.writeHead(405, { "Content-Type": "application/json" });
 
         response.write(JSON.stringify({ "code": 405, "heading": "Method Not Allowed", "message": "Something went wrong!" }));
@@ -82,7 +82,7 @@ module.exports = async (request, response) => {
     try {
         session = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account + "/sessions/" + session + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -107,14 +107,14 @@ module.exports = async (request, response) => {
 
     account = await new Promise((resolve, reject) => {
         fs.readFile("/home/" + account + "/index.json", (error, content) => {
-            return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+            return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
         });
     });
 
     try {
         theuser = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + request["url"]["searchParams"].get("account-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -190,7 +190,7 @@ module.exports = async (request, response) => {
     try {
         record = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account["account-id"] + "/followers/" + request["url"]["searchParams"].get("following-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {

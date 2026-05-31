@@ -52,7 +52,7 @@ module.exports = async (request, response) => {
     try {
         session = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account + "/sessions/" + session + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -77,14 +77,14 @@ module.exports = async (request, response) => {
 
     account = await new Promise((resolve, reject) => {
         fs.readFile("/home/" + account + "/index.json", (error, content) => {
-            return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+            return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
         });
     });
 
     try {
         record = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account["account-id"] + "/sessions/" + request["url"]["searchParams"].get("session-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {

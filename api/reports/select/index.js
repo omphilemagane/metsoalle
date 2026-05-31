@@ -9,7 +9,7 @@ const self = async (request, response, account, session, sessiex) => {
     try {
         await new Promise((resolve, reject) => {
             fs.access("/home/" + account["account-id"] + "/posts/" + request["url"]["searchParams"].get("post-id") + "/index.json", fs.constants.F_OK, (error) => {
-                return error = null ? resolve() : reject(new Error(error["message"]));
+                return error == null ? resolve() : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -25,7 +25,7 @@ const self = async (request, response, account, session, sessiex) => {
     try {
         record = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account["account-id"] + "/posts/" + request["url"]["searchParams"].get("post-id") + "/reports/" + request["url"]["searchParams"].get("report-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -61,7 +61,7 @@ const user = async (request, response, account, session, sessiex) => {
     try {
         theuser = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + request["url"]["searchParams"].get("account-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -77,7 +77,7 @@ const user = async (request, response, account, session, sessiex) => {
     try {
         await new Promise((resolve, reject) => {
             fs.access("/home/" + theuser["account-id"] + "/posts/" + request["url"]["searchParams"].get("post-id") + "/index.json", fs.constants.F_OK, (error) => {
-                return error = null ? resolve() : reject(new Error(error["message"]));
+                return error == null ? resolve() : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -93,7 +93,7 @@ const user = async (request, response, account, session, sessiex) => {
     try {
         record = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + theuser["account-id"] + "/posts/" + request["url"]["searchParams"].get("post-id") + "/reports/" + request["url"]["searchParams"].get("report-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -172,7 +172,7 @@ module.exports = async (request, response) => {
     try {
         session = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account + "/sessions/" + session + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -197,7 +197,7 @@ module.exports = async (request, response) => {
 
     account = await new Promise((resolve, reject) => {
         fs.readFile("/home/" + account + "/index.json", (error, content) => {
-            return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+            return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
         });
     });
 

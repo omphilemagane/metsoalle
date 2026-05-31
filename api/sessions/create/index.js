@@ -7,7 +7,7 @@ const fs = require("fs");
 module.exports = async (request, response) => {
     let account, record;
 
-    if (request["method"] == "POST") {
+    if (request["method"] != "POST") {
         response.writeHead(405, { "Content-Type": "application/json" });
 
         response.write(JSON.stringify({ "code": 405, "heading": "Method Not Allowed", "message": "Something went wrong!" }));

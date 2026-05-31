@@ -52,7 +52,7 @@ module.exports = async (request, response) => {
     try {
         session = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account + "/sessions/" + session + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -77,14 +77,14 @@ module.exports = async (request, response) => {
 
     account = await new Promise((resolve, reject) => {
         fs.readFile("/home/" + account + "/index.json", (error, content) => {
-            return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+            return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
         });
     });
 
     try {
         record = await new Promise((resolve, reject) => {
             fs.readFile("/home/" + account["account-id"] + "/chats/" + request["url"]["searchParams"].get("chat-id") + "/index.json", (error, content) => {
-                return error = null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
+                return error == null ? resolve(JSON.parse(content)) : reject(new Error(error["message"]));
             });
         });
     } catch (error) {
@@ -99,7 +99,7 @@ module.exports = async (request, response) => {
 
     await new Promise((resolve, reject) => {
         fs.rm("/home/" + record["account-id"] + "/chats/" + record["chat-id"] + "/", { recursive: true }, (error) => {
-            return error = null ? resolve() : reject(new Error(error["message"]));
+            return error == null ? resolve() : reject(new Error(error["message"]));
         });
     });
 
