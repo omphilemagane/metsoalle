@@ -304,6 +304,12 @@ module.exports = async (request, response) => {
     });
 
     await new Promise((resolve, reject) => {
+        fs.mkdir("/home/" + record["account-id"] + "/recovery/", (error) => {
+            return error == null ? resolve() : reject(new Error(error["message"]));
+        });
+    });
+
+    await new Promise((resolve, reject) => {
         fs.mkdir("/home/" + record["account-id"] + "/reports/", (error) => {
             return error == null ? resolve() : reject(new Error(error["message"]));
         });
